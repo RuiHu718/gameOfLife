@@ -39,10 +39,28 @@ int main() {
   Grid<char> life;
   readDataIntoGrid(infile, life);
   displayGrid(life);
-  cout << endl;
-  updateToNextGen(life);
-  displayGrid(life);
-  
+
+  while (true) {
+    cout << "a)nimate, t)ick, q)uit?" << endl;
+    string response = getLine();
+    if (response == "q") break;
+    if (response == "t") {
+      updateToNextGen(life);
+      displayGrid(life);      
+    }
+    if (response == "a") {
+      cout << "how many frames?" << endl;
+      int num = getInteger();
+      for (int i = 0; i < num; i++) {
+	updateToNextGen(life);
+	displayGrid(life);
+	pause(50);
+      }
+    }
+  }
+
+  //cout << endl;
+  //updateToNextGen(life);
   //cout << calcNeighbors(0, 0, life) << endl;
   
   cout << "Have a nice Life!" << endl;
